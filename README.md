@@ -1,6 +1,6 @@
-#ST3 plugin
+# stGetSearchResult
 
-### Help to analyse log
+### Help to analysis log
 
 - find key
 - find pattern

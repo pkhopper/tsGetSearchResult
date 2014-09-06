@@ -6,10 +6,13 @@ import sublime_plugin
 
 _caption = {
     0: 'search regex',
-    sublime.IGNORECASE: 'search regex|ignore',
+    sublime.IGNORECASE: 'search regex|ignorecase',
     sublime.LITERAL: 'search literal',
-    sublime.IGNORECASE|sublime.LITERAL: 'search ignore|literal'
+    sublime.IGNORECASE|sublime.LITERAL: 'search literal|ignorecase'
 }
+
+def _setting_get(key):
+    return sublime.load_settings('stGetSearchResult.sublime-settings').get(key)
 
 class CommandProcessorBase:
     def __init__(self, parent, name):
@@ -31,18 +34,27 @@ class CommandCopyLines(CommandProcessorBase):
         text = ''
         for line in self.parent.result_lines:
             text += '%s\n' % (line)
-        sublime.set_clipboard(text)
+        if _setting_get('copy_to_clipboard'):
+            sublime.set_clipboard(text)
+        if _setting_get('copy_to_new_window'):
+            newview = self.parent.view.window().new_file()
+            newview.run_command("insert_snippet", {"contents": text})
 
 
-class CommandCopyWords(CommandProcessorBase):
+class CommandCopyMatches(CommandProcessorBase):
     def __init__(self, parent):
-        CommandProcessorBase.__init__(self, parent, '< copy words >')
+        CommandProcessorBase.__init__(self, parent, '< copy matches >')
 
     def process(self):
         text = ''
         for line in self.parent.result_words:
             text += '%s\n' % (line)
-        sublime.set_clipboard(text)
+        if _setting_get('copy_to_clipboard'):
+            sublime.set_clipboard(text)
+        if _setting_get('copy_to_new_window'):
+            newview = self.parent.view.window().new_file()
+            newview.run_command("insert_snippet", {"contents": text})
+
 
 class GetSearchResult(sublime_plugin.TextCommand):
 
@@ -54,14 +66,12 @@ class GetSearchResult(sublime_plugin.TextCommand):
         if 'IGNORECASE' in args:
             self.search_flag = self.search_flag|sublime.IGNORECASE
         self.msg = StatusMessage(self.view)
-        self.result = Result(CommandCopyLines, CommandCopyWords)
+        self.result = Result(self, CommandCopyLines, CommandCopyMatches)
         initstr = self.view.substr(self.view.sel()[0])
-        if initstr:
-            initstr.split('\n')
         try:
             self.input_panel = self.view.window().show_input_panel(
                 _caption[self.search_flag],
-                initstr,
+                initstr if _setting_get('init_input_panel') else '',
                 self.on_input_panel_done,
                 self.on_input_panel_change,
                 self.on_input_panel_cancel
@@ -131,7 +141,8 @@ class StatusMessage:
 
 
 class Result:
-    def __init__(self, *processors):
+    def __init__(self, parent, *processors):
+        self.parent = parent
         self.processors = []
         for processor in processors:
             self.processors.append(processor(self))
