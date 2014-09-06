@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding=utf-8
 
 import sublime
@@ -36,7 +35,7 @@ class CommandCopyLines(CommandProcessorBase):
             text += '%s\n' % (line)
         if _setting_get('copy_to_clipboard'):
             sublime.set_clipboard(text)
-        if _setting_get('copy_to_new_window'):
+        if _setting_get('copy_to_new_tab'):
             newview = self.parent.view.window().new_file()
             newview.run_command("insert_snippet", {"contents": text})
 
@@ -51,7 +50,7 @@ class CommandCopyMatches(CommandProcessorBase):
             text += '%s\n' % (line)
         if _setting_get('copy_to_clipboard'):
             sublime.set_clipboard(text)
-        if _setting_get('copy_to_new_window'):
+        if _setting_get('copy_to_new_tab'):
             newview = self.parent.view.window().new_file()
             newview.run_command("insert_snippet", {"contents": text})
 
