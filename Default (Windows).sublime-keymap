@@ -1,0 +1,22 @@
+[
+ {
+    "keys": ["super+\\", "super+\\"],
+    "command": "get_search_result",
+    "args": {"LITERAL":""}
+ },
+ {
+    "keys": ["super+\\", "super+1"],
+    "command": "get_search_result",
+    "args": {}
+ },
+ {
+    "keys": ["super+\\", "super+2"],
+    "command": "get_search_result",
+    "args": {"IGNORECASE":"", "LITERAL":""}
+ },
+ {
+    "keys": ["super+\\", "super+3"],
+    "command": "get_search_result",
+    "args": {"IGNORECASE":""}
+ },
+]
