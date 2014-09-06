@@ -1,0 +1,23 @@
+{
+    "schema_version": "1.0",
+    "packages": [
+        {
+            "name": "stGetSearchResult",
+            "description": "Search, display and copy result, help to analysis log file.",
+            "author": "vavava",
+            "details": "https://github.com/pkhopper/tsGetSearchResult/blob/master/README.md",
+            "homepage": "https://github.com/pkhopper/tsGetSearchResult/blob/master/README.md",
+            "readme": "https://github.com/pkhopper/tsGetSearchResult/blob/master/README.md",
+            "labels": ["search"],
+            "releases": [
+                {
+                    "platforms": "*",
+                    "sublime_text": ">=3000",
+                    "version": "1.0.0",
+                    "url": "https://github.com/pkhopper/tsGetSearchResult/archive/master.zip",
+                    "date": "2013-09-21 00:00:00"
+                }
+            ]
+        }
+    ]
+}
