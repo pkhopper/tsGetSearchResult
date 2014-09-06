@@ -12,3 +12,8 @@
 - ```"keys": ["super+\\", "super+1"]```   regex 
 - ```"keys": ["super+\\", "super+2"]```   ignore|literal 
 - ```"keys": ["super+\\", "super+3"]```   ignore|regex 
+
+### settings  
+- ```"init_input_panel": true,```
+- ```"copy_to_clipboard": false,```
+- ```"copy_to_new_window": true,```
