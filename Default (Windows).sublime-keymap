@@ -1,21 +1,21 @@
 [
  {
-    "keys": ["super+\\", "super+\\"],
+    "keys": ["ctrl+\\", "ctrl+\\"],
     "command": "get_search_result",
     "args": {"LITERAL":""}
  },
  {
-    "keys": ["super+\\", "super+1"],
+    "keys": ["ctrl+\\", "ctrl+1"],
     "command": "get_search_result",
     "args": {}
  },
  {
-    "keys": ["super+\\", "super+2"],
+    "keys": ["ctrl+\\", "ctrl+2"],
     "command": "get_search_result",
     "args": {"IGNORECASE":"", "LITERAL":""}
  },
  {
-    "keys": ["super+\\", "super+3"],
+    "keys": ["ctrl+\\", "ctrl+3"],
     "command": "get_search_result",
     "args": {"IGNORECASE":""}
  },
